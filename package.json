@@ -10,9 +10,6 @@
     "type": "git",
     "url": "git+https://github.com/cagataycali/analytics.git"
   },
-  "engines": {
-    "node": "14.x"
-  },
   "keywords": [
     "analytics"
   ],

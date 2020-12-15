@@ -1,10 +1,8 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
-const DB = require('./db')
 const {getHREF} = require('./utils')
-const db = {}
-const {all, get, count, add} = new DB(db)
+const {all, get, count, add} = require('./db')
 
 app.use(express.json())
 app.use(express.static("public"));
