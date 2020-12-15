@@ -31,7 +31,7 @@ const get = (url) => {
 };
 
 const count = (url) => {
-  return this.get(url) ? this.get(url).length : 0;
+  return get(url) ? get(url).length : 0;
 };
 
 const all = () => db;
