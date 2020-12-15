@@ -1,0 +1,25 @@
+{
+  "name": "analytics",
+  "version": "1.0.0",
+  "description": "We want create new-gen analytics platform for developers to developers. This project aim is one click analytics solution for open-source projects & more.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cagataycali/analytics.git"
+  },
+  "keywords": [
+    "analytics"
+  ],
+  "author": "Cagatay Cali",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cagataycali/analytics/issues"
+  },
+  "homepage": "https://github.com/cagataycali/analytics#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
