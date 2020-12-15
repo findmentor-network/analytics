@@ -11,7 +11,6 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
   console.log(req.body, 'body');
-  console.log(req.query, 'query');
   res.send('Hello World!')
 })
 
