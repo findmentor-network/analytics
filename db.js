@@ -30,7 +30,7 @@ class DB {
   };
 
   count = (url) => {
-    return this.get(url).length
+    return this.get(url)?.length || 0
   }
 
   all = () => this.db

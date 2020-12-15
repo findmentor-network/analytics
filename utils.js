@@ -7,5 +7,6 @@ const fixProtocol = (url) => {
 const getHREF = (req) => fixProtocol(req.params[0]);
 
 module.exports = {
-  getHREF,
-};
+    fixProtocol,
+    getHREF
+}
