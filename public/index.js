@@ -3,7 +3,7 @@ console.log(window.location)
 // get fingerpring
 const fingerprint = 'demo'
 
-fetch("http://localhost:3000", {
+fetch("http://135.181.150.199:3000/", {
   method: "POST",
   headers: {
     Accept: "application/json",
