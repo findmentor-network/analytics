@@ -25,12 +25,16 @@ class DB {
 
   get = (url) => {
     // mongodb get
-    const { host, pathname } = new URL(fixProtocol(url)); 
-    return this.db[host]?.[pathname];
+    const { host, pathname } = new URL(fixProtocol(url));
+    if (this.db[host] && this.db[host][pathname]) {
+      return this.db[host][pathname];
+    } else {
+      return
+    }
   };
 
   count = (url) => {
-    return this.get(url)?.length || 0
+    return this.get(url) ? this.get(url).length : 0
   }
 
   all = () => this.db
