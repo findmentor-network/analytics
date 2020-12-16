@@ -6,7 +6,7 @@ const {all, get, count, add} = require('./db')
 const cors = require("cors");
 app.use(cors());
 app.use(express.json())
-app.use(express.static("public"));
+app.use(express.static("docs"));
 
 app.get("/", (req, res) => res.json(all()));
 
