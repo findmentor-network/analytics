@@ -1,8 +1,8 @@
 // Client side script which is provider, will be here.
-const BASE_URL = window.BASE_URL || "http://localhost:5000";
-const fingerprint = "demo";
+var BASE_URL = window.BASE_URL || "http://localhost:5000";
+var fingerprint = "demo";
 
-const fingerprint = () => {
+var fingerprint = () => {
   var canvas = document.createElement("canvas");
   var ctx = canvas.getContext("2d");
   var txt = "i9asdm..$#po((^@KbXrww!~cz";
@@ -30,20 +30,20 @@ const fingerprint = () => {
   return hash;
 };
 
-const get = async () => {
+var get = async () => {
   let { href } = window.location;
   href = href.replace(/https?:\/\//gi, "").replace(/\/$/gi, "");
   return fetch(`${BASE_URL}/a/${href}`);
 };
 
-const count = async () => {
+var count = async () => {
   let { href } = window.location;
   href = href.replace(/https?:\/\//gi, "").replace(/\/$/gi, "");
   return fetch(`${BASE_URL}/c/${href}`);
 };
 
-const put = async (data) => {
-  const date = new Date()
+var put = async (data) => {
+  var date = new Date()
   return fetch(`${BASE_URL}`, {
     method: "POST",
     headers: {
