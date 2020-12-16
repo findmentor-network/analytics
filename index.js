@@ -10,7 +10,13 @@ app.use(express.static("docs"));
 
 app.get("/", (req, res) => res.json(all()));
 
-app.get("/a/*", (req, res) => res.json(get(getHREF(req))));
+app.get("/a/*", (req, res) => {
+  const data = get(getHREF(req));
+  if (!data) {
+    res.status(404).json({status: 404, message: 'This entry does not exists.'})
+  }
+  res.json(data);
+});
 
 app.get("/c/*", (req, res) => res.json({count: count(getHREF(req))}));
 
