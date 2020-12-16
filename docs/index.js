@@ -43,13 +43,14 @@ const count = async () => {
 };
 
 const put = async (data) => {
+  const date = new Date()
   return fetch(`${BASE_URL}`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ href: window.location.href, fingerprint: fingerprint(), ...data }),
+    body: JSON.stringify({ href: window.location.href, date: date.valueOf(), fingerprint: fingerprint(), ...data }),
   });
 };
 
