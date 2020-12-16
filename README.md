@@ -11,7 +11,7 @@
 ```bash
 git clone git@github.com:cagataycali/analytics.git
 npm install # yarn
-npm start # yarn start (for backend.)
+npm start # yarn start (for backend.) starts @ localhost:5000
 ```
 
 In seperated terminal:
