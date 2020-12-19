@@ -1,12 +1,9 @@
-// This file is wrap for future DB connections
 const {fixProtocol} = require('./utils')
 const MongoClient = require('mongodb').MongoClient
 
-// config
-const URI = 'mongo_uri_here'
-
 // connects to db
 async function connect() {
+  const URI = process.env.MONGO_URI || 'mongodb://localhost:27017/analytics'
   const client = await MongoClient.connect(URI, { useUnifiedTopology: true })
   return client.db('find-mentor')
 }
