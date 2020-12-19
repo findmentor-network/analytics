@@ -6,7 +6,7 @@ const db = {}
 const add = (data) => {
   // mongodb add
   const { host, pathname } = new URL(fixProtocol(data.href));
-  
+
   if (db[host]) {
     if (db[host][pathname]) {
       db[host][pathname].push(data);
