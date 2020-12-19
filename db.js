@@ -1,40 +1,48 @@
 // This file is wrap for future DB connections
 const {fixProtocol} = require('./utils')
+const MongoClient = require('mongodb').MongoClient
 
-const db = {}
+// config
+const URI = 'mongo_uri_here'
 
-const add = (data) => {
-  // mongodb add
+// connects to db
+async function connect() {
+  const client = await MongoClient.connect(URI, { useUnifiedTopology: true })
+  return client.db('find-mentor')
+}
+
+const add = async (data) => {
   const { host, pathname } = new URL(fixProtocol(data.href));
 
-  if (db[host]) {
-    if (db[host][pathname]) {
-      db[host][pathname].push(data);
-    } else {
-      db[host][pathname] = [];
-      db[host][pathname].push(data);
-    }
-  } else {
-    db[host] = {};
-    db[host][pathname] = [];
-    db[host][pathname].push(data);
-  }
+  const db = await connect()
+  const hosts = db.collection('hosts')
+  const host_exists = await hosts.findOne({ host })
+
+  if (host_exists)
+    await hosts.updateOne({ host }, { $push: { pathname: data } })
+  else
+    hosts.insertOne({ host, pathname: [data] })
 };
 
-const get = (url) => {
-  // mongodb get
+const get = async (url) => {
   const { host, pathname } = new URL(fixProtocol(url));
-  if (db[host] && db[host][pathname]) {
-    return db[host][pathname];
-  } else {
-    return;
-  }
+
+  const db = await connect()
+  const host_object = await db.collection('hosts').findOne({ host })
+
+  return host_object ? host_object.pathname : []
 };
 
-const count = (url) => {
-  return get(url) ? get(url).length : 0;
+const count = async (url) => {
+  const data = await get(url)
+  console.log(data)
+  return data ? data.length : 0
 };
 
-const all = () => db;
+const all = async () => {
+  const db = await connect()
+  const hosts = await db.collection('hosts').find({})
+  return hosts
+};
 
 module.exports = {add, get, count, all}
