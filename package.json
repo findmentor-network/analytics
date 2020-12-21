@@ -4,8 +4,8 @@
   "description": "We want create new-gen analytics platform for developers to developers. This project aim is one click analytics solution for open-source projects & more.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node src",
+    "dev": "nodemon src"
   },
   "repository": {
     "type": "git",
@@ -21,9 +21,10 @@
   },
   "homepage": "https://github.com/cagataycali/analytics#readme",
   "dependencies": {
+    "apollo-server-express": "^2.19.0",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "graphql": "^15.4.0",
     "mongodb": "^3.6.3"
   },
   "devDependencies": {
