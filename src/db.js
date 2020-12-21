@@ -30,7 +30,6 @@ const get = async (url) => {
 
 const count = async (url) => {
   const data = await get(url)
-  console.log(data)
   return data ? data.length : 0
 };
 
