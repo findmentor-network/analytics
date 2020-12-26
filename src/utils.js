@@ -1,12 +1,12 @@
 const fixProtocol = (url) => {
   return url
-    ? "http://" + url.replace(/https?:\/\//gi, "").replace(/\/$/gi, "")
-    : "";
-};
+    ? 'http://' + url.replace(/https?:\/\//gi, '').replace(/\/$/gi, '')
+    : ''
+}
 
-const getHREF = (req) => fixProtocol(req.params[0]);
+const getHREF = (req) => fixProtocol(req.params[0])
 
 module.exports = {
-    fixProtocol,
-    getHREF
+  fixProtocol,
+  getHREF
 }
