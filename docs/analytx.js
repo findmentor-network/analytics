@@ -33,13 +33,13 @@ var fingerprint = () => {
 var get = async () => {
   var { href } = window.location;
   href = href.replace(/https?:\/\//gi, '').replace(/\/$/gi, '');
-  return fetch(`${BASE_URL}/a/${href}`);
+  return fetch(`${BASE_URL}/a/${href}`).then((res) => res.json());
 };
 
 var count = async () => {
   var { href } = window.location;
   href = href.replace(/https?:\/\//gi, '').replace(/\/$/gi, '');
-  return fetch(`${BASE_URL}/c/${href}`);
+  return fetch(`${BASE_URL}/c/${href}`).then((res) => res.json());
 };
 
 var polyfillSendBeacon = (body) => fetch(`${BASE_URL}`, {

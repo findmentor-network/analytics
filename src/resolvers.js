@@ -1,7 +1,7 @@
 const resolvers = {
   Query: {
-    test: () => 'test'
-  }
-}
+    test: () => 'test',
+  },
+};
 
-module.exports = resolvers
+module.exports = resolvers;
