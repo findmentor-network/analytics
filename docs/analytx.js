@@ -56,10 +56,11 @@ var polyfillSendBeacon = (body) => fetch(`${BASE_URL}`, {
 var send = (data) => {
   var date = new Date();
   var body = JSON.stringify({
+    ...data,
     href: window.location.href,
+    referrer: document.referrer,
     date: date.valueOf(),
     fingerprint: fingerprint(),
-    ...data,
   });
   // Handle old browsers like android 4.4.4
   // https://caniuse.com/?search=sendBeacon
