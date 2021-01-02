@@ -5,7 +5,7 @@ let client, db
 
 // connects to db
 async function connect () {
-  const URI = process.env.MONGO_URI || 'mongodb://localhost:27017/analytics'
+  const URI = process.env.MONGO_URI || 'mongodb://localhost:27017'
   client = await MongoClient.connect(URI, { useUnifiedTopology: true })
   db = client.db('analytics')
 }
