@@ -10,33 +10,29 @@ async function connect () {
   db = client.db('analytics')
 }
 
-const add = async (data) => {
+const add = (data) => {
   const { host, pathname } = new URL(fixProtocol(data.href))
 
-  const hosts = db.collection('hosts')
-  const ishostExists = await hosts.findOne({ host })
-
-  if (ishostExists) {
-    await hosts.updateOne({ host }, { $push: { pathname: data } })
-  } else {
-    hosts.insertOne({ host, pathname: [data] })
-  }
+  const hosts = db.collection(host)
+  hosts.insertOne({
+    pathname,
+    ...data
+  })
 }
 
 const get = async (url) => {
-  const _url = new URL(fixProtocol(url))
-  const host = await db.collection('hosts').findOne({ host: _url.hostname })
-  return host ? host.pathname : []
+  const { host, pathname } = new URL(fixProtocol(url))
+  return db.collection(host).find({ pathname }).toArray()
 }
 
 const count = async (url) => {
-  const data = await get(url)
-  return data ? data.length : 0
+  const { host, pathname } = new URL(fixProtocol(url))
+  return db.collection(host).find({ pathname }).count()
 }
 
-const all = async () => {
-  const hosts = await db.collection('hosts').find({})
-  return hosts
+const all = async (url) => {
+  const { host } = new URL(fixProtocol(url))
+  return db.collection(host).find({ }).toArray()
 }
 
 module.exports = { connect, add, get, count, all }

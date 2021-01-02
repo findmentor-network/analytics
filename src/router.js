@@ -2,10 +2,6 @@ const router = require('express').Router()
 const { all, get, count, add } = require('./db')
 const { getHREF } = require('./utils')
 
-router.get('/', async (req, res) => {
-  res.json(await all())
-})
-
 router.get('/a/*', async (req, res) => {
   const data = await get(getHREF(req))
   if (!data) {
@@ -18,10 +14,14 @@ router.get('/c/*', async (req, res) => {
   res.json({ count: await count(getHREF(req)) })
 })
 
-router.post('/', async (req, res) => {
-  // req.body must be includes {href: 'http://localhost:3000'} like object.
+router.post('/', (req, res) => {
   add(req.body)
   res.sendStatus(200)
+})
+
+router.get('/*', async (req, res) => {
+  const data = await all(getHREF(req))
+  res.json(data)
 })
 
 module.exports = router
