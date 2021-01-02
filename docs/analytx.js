@@ -30,16 +30,22 @@ var fingerprint = () => {
   return hash;
 };
 
-var get = async () => {
+var get = () => {
   var { href } = window.location;
   href = href.replace(/https?:\/\//gi, '').replace(/\/$/gi, '');
   return fetch(`${BASE_URL}/a/${href}`).then((res) => res.json());
 };
 
-var count = async () => {
+var count = () => {
   var { href } = window.location;
   href = href.replace(/https?:\/\//gi, '').replace(/\/$/gi, '');
   return fetch(`${BASE_URL}/c/${href}`).then((res) => res.json());
+};
+
+var total = () => {
+  var { href } = window.location;
+  href = href.replace(/https?:\/\//gi, '').replace(/\/$/gi, '');
+  return fetch(`${BASE_URL}/total/${href}`).then((res) => res.json());
 };
 
 var polyfillSendBeacon = (body) => fetch(`${BASE_URL}`, {
@@ -65,3 +71,4 @@ var send = (data) => {
 window.send = send;
 window.get = get;
 window.count = count;
+window.total = total;

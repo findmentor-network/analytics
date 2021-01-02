@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  all, get, count, add,
+  all, get, count, add, allCount,
 } = require('./db');
 const { getHREF } = require('./utils');
 
@@ -14,6 +14,10 @@ router.get('/a/*', async (req, res) => {
 
 router.get('/c/*', async (req, res) => {
   res.json({ count: await count(getHREF(req)) });
+});
+
+router.get('/total/*', async (req, res) => {
+  res.json({ count: await allCount(getHREF(req)) });
 });
 
 router.post('/', (req, res) => {

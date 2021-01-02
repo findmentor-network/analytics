@@ -31,11 +31,16 @@ const count = (url) => {
   return db.collection(host).find({ pathname }).count();
 };
 
+const allCount = (url) => {
+  const { host } = new URL(fixProtocol(url));
+  return db.collection(host).find({ }).count();
+};
+
 const all = (url) => {
   const { host } = new URL(fixProtocol(url));
   return db.collection(host).find({ }).toArray();
 };
 
 module.exports = {
-  connect, add, get, count, all,
+  connect, add, get, count, all, allCount,
 };
