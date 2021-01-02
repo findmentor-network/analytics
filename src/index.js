@@ -18,7 +18,7 @@ const server = new ApolloServer({
 server.applyMiddleware({ app })
 
 connect().then(() => {
-  app.listen(port, (_) => {
+  app.listen(port, '0.0.0.0', (_) => {
     console.log(`analytics app listening at http://localhost:${port}`)
     console.log(
       `🚀 Graphql ready at http://localhost:${port}${server.graphqlPath}`

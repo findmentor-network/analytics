@@ -20,8 +20,8 @@ router.post('/', (req, res) => {
 })
 
 router.get('/*', async (req, res) => {
-  const data = await all(getHREF(req))
-  res.json(data)
+  // const data = await all(getHREF(req))
+  res.json({})
 })
 
 module.exports = router
