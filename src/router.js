@@ -15,7 +15,7 @@ router.get('/c/*', async (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  add(req.body)
+  add(JSON.parse(req.body))
   res.sendStatus(200)
 })
 

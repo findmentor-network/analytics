@@ -8,6 +8,7 @@ const port = process.env.PORT || 5000
 app.use(require('cors')())
 app.use(express.json())
 app.use(express.static('docs'))
+app.use(express.text())
 app.use(routes)
 
 const server = new ApolloServer({

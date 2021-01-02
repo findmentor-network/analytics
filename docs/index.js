@@ -1,10 +1,10 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-var */
-// Client side script which is provider, will be here.
 var BASE_URL = window.BASE_URL || 'http://localhost:5000'
 var fingerprint = () => {
-  const canvas = document.createElement('canvas')
-  const ctx = canvas.getContext('2d')
-  const txt = 'i9asdm..$#po((^@KbXrww!~cz'
+  var canvas = document.createElement('canvas')
+  var ctx = canvas.getContext('2d')
+  var txt = 'i9asdm..$#po((^@KbXrww!~cz'
   ctx.textBaseline = 'top'
   ctx.font = "16px 'Arial'"
   ctx.textBaseline = 'alphabetic'
@@ -18,11 +18,11 @@ var fingerprint = () => {
   ctx.shadowBlur = 10
   ctx.shadowColor = 'blue'
   ctx.fillRect(-20, 10, 234, 5)
-  const strng = canvas.toDataURL()
-  let hash = 0
+  var strng = canvas.toDataURL()
+  var hash = 0
   if (strng.length == 0) return 'nothing!'
-  for (i = 0; i < strng.length; i++) {
-    char = strng.charCodeAt(i)
+  for (var i = 0; i < strng.length; i++) {
+    var char = strng.charCodeAt(i)
     hash = (hash << 5) - hash + char
     hash = hash & hash
   }
@@ -30,34 +30,39 @@ var fingerprint = () => {
 }
 
 var get = async () => {
-  let { href } = window.location
+  var href = window.location.href
   href = href.replace(/https?:\/\//gi, '').replace(/\/$/gi, '')
   return fetch(`${BASE_URL}/a/${href}`)
 }
 
 var count = async () => {
-  let { href } = window.location
+  var href = window.location.href
   href = href.replace(/https?:\/\//gi, '').replace(/\/$/gi, '')
   return fetch(`${BASE_URL}/c/${href}`)
 }
 
-var put = async (data) => {
-  const date = new Date()
+var polyfillSendBeacon = (body) => {
   return fetch(`${BASE_URL}`, {
     method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      href: window.location.href,
-      date: date.valueOf(),
-      fingerprint: fingerprint(),
-      ...data
-    })
+    body
   })
 }
 
+var send = (data) => {
+  var date = new Date()
+  var body = JSON.stringify({
+    href: window.location.href,
+    date: date.valueOf(),
+    fingerprint: fingerprint(),
+    ...data
+  })
+  // Handle old browsers like android 4.4.4
+  // https://caniuse.com/?search=sendBeacon
+  if (!navigator.sendBeacon) {
+    return polyfillSendBeacon(body)
+  }
+  navigator.sendBeacon('http://localhost:5000', body)
+}
+window.send = send
 window.get = get
 window.count = count
-window.put = put
