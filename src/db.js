@@ -20,17 +20,17 @@ const add = (data) => {
   })
 }
 
-const get = async (url) => {
+const get = (url) => {
   const { host, pathname } = new URL(fixProtocol(url))
   return db.collection(host).find({ pathname }).toArray()
 }
 
-const count = async (url) => {
+const count = (url) => {
   const { host, pathname } = new URL(fixProtocol(url))
   return db.collection(host).find({ pathname }).count()
 }
 
-const all = async (url) => {
+const all = (url) => {
   const { host } = new URL(fixProtocol(url))
   return db.collection(host).find({ }).toArray()
 }
