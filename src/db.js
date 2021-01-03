@@ -21,26 +21,16 @@ const add = (data) => {
   });
 };
 
-const get = (url) => {
-  const { host, pathname } = new URL(fixProtocol(url));
-  return db.collection(host).find({ pathname }).toArray();
-};
-
 const count = (url) => {
   const { host, pathname } = new URL(fixProtocol(url));
   return db.collection(host).find({ pathname }).count();
 };
 
-const allCount = (url) => {
+const total = (url) => {
   const { host } = new URL(fixProtocol(url));
   return db.collection(host).find({ }).count();
 };
 
-const all = (url) => {
-  const { host } = new URL(fixProtocol(url));
-  return db.collection(host).find({ }).toArray();
-};
-
 module.exports = {
-  connect, add, get, count, all, allCount,
+  connect, add, count, total,
 };

@@ -1,11 +1,10 @@
 {
-  "name": "analytics",
+  "name": "analytx",
   "version": "1.0.0",
   "description": "We want create new-gen analytics platform for developers to developers. This project aim is one click analytics solution for open-source projects & more.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node src",
-    "dev": "nodemon src"
+    "start": "node src"
   },
   "repository": {
     "type": "git",
@@ -21,10 +20,8 @@
   },
   "homepage": "https://github.com/cagataycali/analytics#readme",
   "dependencies": {
-    "apollo-server-express": "^2.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "graphql": "^15.4.0",
     "mongodb": "^3.6.3"
   },
   "devDependencies": {
@@ -32,7 +29,6 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "nodemon": "^2.0.6"
+    "eslint-plugin-promise": "^4.2.1"
   }
 }
