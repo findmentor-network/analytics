@@ -11,7 +11,7 @@
 ```bash
 git clone git@github.com:cagataycali/analytics.git
 npm install # yarn
-MONGODB_URI='YOUR_MONGO_DB_URL' npm start # yarn start (for backend.) starts @ localhost:5000
+MONGO_URI='YOUR_MONGO_DB_URL' npm start # yarn start (for backend.) starts @ localhost:5000
 ```
 
 In seperated terminal:
@@ -29,12 +29,12 @@ docker build -t analytics .
 ```
 
 ```bash
-docker run --rm -i -t -e MONGODB_URI='YOUR_MONGO_DB_URL' -e PORT='80' -p 8080:80 analytics
+docker run --rm -i -t -e MONGO_URI='YOUR_MONGO_DB_URL' -e PORT='80' -p 5000:80 analytics
 ```
 
 # Runnig with docker compose
 
-App will be available at :5050.
+App will be available at :5000.
 ```bash
 docker-compose pull && docker-compose up --abort-on-container-exit
 ```
