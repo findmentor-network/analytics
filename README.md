@@ -6,6 +6,46 @@
 - We need actual analytics for developers & open-source projects.
 
 
+# Example usage
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example usage</title>
+</head>
+<body>
+    <script>
+        /*
+            You can host an analytx server on your servers / heroku / aws or gcloud.
+            Insert your servers base url below.
+        */
+        window.BASE_URL = 'https://beta.analytx.dev' // your analytx server
+        /*
+            Send a event.
+            The event can be anything you want
+        */
+        send({type: 'click', event:'jobApply'})
+        /*
+            
+        */
+        send({type: 'seen', event:'jobPage'})
+        // count().then(data => data.count).then(console.log)
+        // total().then(data => data.count).then(console.log)
+    </script>
+    <script src='https://analytx.dev/analytx.js'></script>
+</body>
+</html>
+```
+
+
+# Deploy to your servers
+
+
+*Deploy to heroku (TO-DO)*
+
+
 # Install
 
 ```bash
