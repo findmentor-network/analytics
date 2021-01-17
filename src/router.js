@@ -15,7 +15,17 @@ router.get('/total/*', async (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  add(JSON.parse(req.body));
+  const userAgent = req.headers['user-agent'];
+  const country = req.headers['cf-ipcountry'];
+  const ip = req.headers['cf-connecting-ip'];
+
+  const body = JSON.parse(req.body);
+
+  body.ip = ip;
+  body.userAgent = userAgent;
+  body.country = country;
+
+  add(body);
   res.sendStatus(200);
 });
 
