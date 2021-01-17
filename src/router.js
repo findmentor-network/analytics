@@ -5,6 +5,8 @@ const {
 const { getHREF } = require('./utils');
 
 router.get('/c/*', async (req, res) => {
+  console.log(req.headers);
+  console.log(req.rawListeners);
   res.json({ count: await count(getHREF(req)) });
 });
 
