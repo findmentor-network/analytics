@@ -8,7 +8,7 @@ Promise.all([
   .then(() => {
     broker.consume((data) => {
       // Business Logic
-      console.log('Received new message', data.event);
+      console.log('Received new message', data);
       db.add(data);
     });
   });
