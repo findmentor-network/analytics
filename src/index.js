@@ -1,5 +1,6 @@
 const express = require('express');
 const { connect } = require('./broker');
+const db = require('./db');
 
 const app = express();
 const routes = require('./router');
@@ -11,6 +12,10 @@ app.use(require('cors')());
 
 app.use(express.text());
 app.use(routes);
+
+db.connect().then((_) => {
+  console.log('DB opened');
+});
 
 connect().then(() => {
   app.listen(port, host, () => {

@@ -4,7 +4,8 @@
   "description": "We want create new-gen analytics platform for developers to developers. This project aim is one click analytics solution for open-source projects & more.",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src"
+    "start": "node src",
+    "consumer": "node src/consumer.js"
   },
   "repository": {
     "type": "git",
