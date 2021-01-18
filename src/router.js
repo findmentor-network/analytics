@@ -1,6 +1,7 @@
 const router = require('express').Router();
+const { pushToQueue } = require('./broker');
 const {
-  count, add, total,
+  count, total,
 } = require('./db');
 const { getHREF } = require('./utils');
 
@@ -12,7 +13,7 @@ router.get('/total/*', async (req, res) => {
   res.json({ count: await total(getHREF(req)) });
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const userAgent = req.headers['user-agent'];
   const country = req.headers['cf-ipcountry'];
   const ip = req.headers['cf-connecting-ip'];
@@ -23,7 +24,7 @@ router.post('/', (req, res) => {
   body.userAgent = userAgent;
   body.country = country;
 
-  add(body);
+  await pushToQueue(body);
   res.sendStatus(200);
 });
 
