@@ -1,7 +1,7 @@
 const { Connection } = require('amqplib-as-promised');
 const { fixProtocol } = require('./utils');
 // TODO: Change to process.env
-const AMQP_URL = process.env.MONGO_URI || 'amqps://kimsvbvz:rcFX0lhzZzWt0weYYdQ-q1UFxyfQmsWl@squid.rmq.cloudamqp.com/kimsvbvz';
+const AMQP_URL = process.env.RABBITMQ_URI || 'amqp://user:test@localhost:5672/';
 const queue = 'analytics';
 const connection = new Connection(AMQP_URL);
 let channel;
@@ -33,8 +33,8 @@ function sanitizeMessage(message) {
 function consume(handler) {
   channel.consume(queue, (message) => {
     const data = sanitizeMessage(message);
-    handler(data);
     channel.ack(message);
+    handler(data);
   })
     .then((r) => console.log('Consumer Connected', r.consumerTag));
 }
